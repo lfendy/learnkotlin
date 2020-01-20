@@ -1,5 +1,5 @@
-SOURCE = hello.kt
-TARGET = hello.jar
+SOURCE = a01_hello.kt
+TARGET = a01_hello.jar
 
 $(TARGET):
 	kotlinc $(SOURCE) -include-runtime -d $(TARGET)

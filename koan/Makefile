@@ -4,4 +4,4 @@ PROJECT?=hello
 init:
 	mkdir -p $(PROJECT) && \
 		sed 's/###PROJECT###/$(PROJECT)/g' Makefile.template > $(PROJECT)/Makefile && \
-		touch $(PROJECT)/$(PROJECT).kt
+		cp project.kt.template $(PROJECT)/$(PROJECT).kt

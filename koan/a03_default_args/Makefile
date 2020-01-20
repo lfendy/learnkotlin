@@ -1,5 +1,5 @@
-SOURCE = ###PROJECT###.kt
-TARGET = ###PROJECT###.jar
+SOURCE = a03_default_args.kt
+TARGET = a03_default_args.jar
 
 $(TARGET):
 	kotlinc $(SOURCE) -include-runtime -d $(TARGET)
