@@ -9,8 +9,6 @@ data class MyDate(val year: Int, val month: Int, val dayOfMonth: Int) : Comparab
   }
 }
 
-fun compare(date1: MyDate, date2: MyDate) = date1 < date2
-
 fun main(args: Array<String> = arrayOf()) {
   assert(MyDate(2002, 2, 2) == MyDate(2002, 2, 2), { -> "Same date should be equal" })
   assert(MyDate(2002, 2, 1) < MyDate(2002, 2, 2), { -> "Earlier day of month should be earlier" })
