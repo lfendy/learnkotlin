@@ -24,10 +24,17 @@ fun isLeapDay(date: MyDate): Boolean {
   // return date.run { year % 4 == 0 && month == 2 && dayOfMonth == 29 }
 
   // T.let   (extension fun, send it, return last)
-  return date.let { it.year % 4 == 0 && it.month == 2 && it.dayOfMonth == 29 }
+  // return date.let { it.year % 4 == 0 && it.month == 2 && it.dayOfMonth == 29 }
 
   // T.apply (send this, return this)
+  // var toReturn: Boolean
+  // date.apply { toReturn = year % 4 == 0 && month == 2 && dayOfMonth == 29 }
+  // return toReturn
+
   // T.also  (send it, return this)
+  var toReturn: Boolean
+  date.also { toReturn = it.year % 4 == 0 && it.month == 2 && it.dayOfMonth == 29 }
+  return toReturn
 }
 
 fun main(args: Array<String> = arrayOf()) {
