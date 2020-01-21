@@ -12,7 +12,7 @@ build: $(TARGET)
 
 .PHONY: run
 run: $(TARGET)
-	java -jar $(TARGET)
+	java -ea -jar $(TARGET)
 
 PHONY: crun
 crun: clean run
