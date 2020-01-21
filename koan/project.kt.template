@@ -1,8 +1,4 @@
 
-fun TODO() {
-  throw NotImplementedError()
-}
-
 fun main(args: Array<String> = arrayOf()) {
   println("OK")
 }

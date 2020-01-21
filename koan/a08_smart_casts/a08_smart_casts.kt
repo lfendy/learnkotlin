@@ -33,10 +33,6 @@ interface Expr
 class Num(val value: Int) : Expr
 class Sum(val left: Expr, val right: Expr) : Expr
 
-fun TODO() {
-  throw NotImplementedError()
-}
-
 fun main(args: Array<String> = arrayOf()) {
   assert(eval(Num(1)) == 1)
   assert(eval(Sum(Num(1), Num(2))) == 3)
