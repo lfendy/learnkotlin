@@ -21,6 +21,14 @@ fun main(args: Array<String> = arrayOf()) {
   println(shop.customers.find { it.name == "Lucas" }?.orderedProducts)
   println(shop.allOrderedProducts)
 
+  // Max min
+  println("==Max min==")
+  println(shop.getCustomerWithMaximumNumberOfOrders())
+  println(shop.customers.find { it.name == lucas }?.getMostExpensiveOrderedProduct())
+
+  // Sort
+  println(shop.getCustomersSortedByNumberOfOrders())
+
 
   println("OK")
 }
@@ -66,6 +74,16 @@ val Shop.allOrderedProducts: Set<Product> get() {
   return customers.flatMap { it.orderedProducts }.toSet()
 }
 
+////// Max Min
+// Return a customer whose order count is the highest among all customers
+fun Shop.getCustomerWithMaximumNumberOfOrders(): Customer? = customers.maxBy { it.orders.size }
+
+// Return the most expensive product which has been ordered
+fun Customer.getMostExpensiveOrderedProduct(): Product? = orders.flatMap { it.products }.maxBy { it.price }
+
+////// Sort
+// Return a list of customers, sorted by the ascending number of orders they made
+fun Shop.getCustomersSortedByNumberOfOrders(): List<Customer> = customers.sortedBy { it.orders.size }
 
 
 
