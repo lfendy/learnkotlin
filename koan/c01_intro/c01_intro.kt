@@ -107,11 +107,18 @@ fun Shop.groupCustomersByCity(): Map<City, List<Customer>> = customers.groupBy {
 
 ////// Partition
 // Return customers who have more undelivered orders than delivered
+// fun Shop.getCustomersWithMoreUndeliveredOrdersThanDelivered(): Set<Customer> {
+//   val (moreUndelivered, _) = customers.partition {
+//     it.orders.filter { !it.isDelivered }.size > it.orders.filter { it.isDelivered }.size
+//   }
+//   return moreUndelivered.toSet()
+// }
+
 fun Shop.getCustomersWithMoreUndeliveredOrdersThanDelivered(): Set<Customer> {
-  val (moreUndelivered, _) = customers.partition {
-    it.orders.filter { !it.isDelivered }.size > it.orders.filter { it.isDelivered }.size
-  }
-  return moreUndelivered.toSet()
+  return customers.filter {
+    val (delivered, undelivered) = it.orders.partition { it.isDelivered }
+    undelivered.size > delivered.size
+  }.toSet()
 }
 
 
