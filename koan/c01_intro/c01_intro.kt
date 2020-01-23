@@ -41,6 +41,12 @@ fun main(args: Array<String> = arrayOf()) {
   // Fold
   println(shop.getSetOfProductsOrderedByEveryCustomer())
 
+  // Compound Tasks
+  println(shop.customers.find { it.name == lucas }?.getMostExpensiveOrderedProduct())
+  println(shop.getNumberOfTimesProductWasOrdered(idea))
+
+
+
 
   println("OK")
 }
@@ -160,7 +166,26 @@ fun Shop.getSetOfProductsOrderedByEveryCustomer(): Set<Product> {
   })
 }
 
+////// Compound Tasks
+// Return the most expensive product among all delivered products
+// (use the Order.isDelivered flag)
+fun Customer.getMostExpensiveDeliveredProduct(): Product? {
+  return orders.
+    filter { it.isDelivered }.
+    flatMap { it.products }.
+    maxBy { it.price }
+}
 
+// Return how many times the given product was ordered.
+// Note: a customer may order the same product for several times.
+fun Shop.getNumberOfTimesProductWasOrdered(product: Product): Int {
+  return customers.
+    flatMap { it.orders }.
+    flatMap { it.products }.
+    count { it == product }
+}
+
+////// Get used to new style
 
 
 
