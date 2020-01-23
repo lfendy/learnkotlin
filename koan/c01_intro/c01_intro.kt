@@ -45,7 +45,7 @@ fun main(args: Array<String> = arrayOf()) {
   println(shop.customers.find { it.name == lucas }?.getMostExpensiveOrderedProduct())
   println(shop.getNumberOfTimesProductWasOrdered(idea))
 
-
+  // Get used to new style
 
 
   println("OK")
@@ -186,6 +186,21 @@ fun Shop.getNumberOfTimesProductWasOrdered(product: Product): Int {
 }
 
 ////// Get used to new style
+fun doSomethingStrangeWithCollection(collection: Collection<String>): Collection<String>? {
 
+  /*
+  val groupsByLength = collection. groupBy { s -> TODO() }
+
+  val maximumSizeOfGroup = groupsByLength.values.map { group -> TODO() }.max()
+
+  return groupsByLength.values.firstOrNull { group -> TODO() }
+  */
+
+  return collection
+    .groupBy { it.length }
+    .values
+    .maxBy { it.size }
+
+}
 
 
