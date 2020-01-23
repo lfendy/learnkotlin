@@ -32,6 +32,14 @@ fun main(args: Array<String> = arrayOf()) {
   // Sum
   println(shop.customers.find { it.name == lucas }?.getTotalOrderPrice())
 
+  // GroupBy
+  println(shop.groupCustomersByCity())
+
+  // Partition
+  println(shop.getCustomersWithMoreUndeliveredOrdersThanDelivered())
+
+
+
   println("OK")
 }
 
@@ -92,6 +100,21 @@ fun Shop.getCustomersSortedByNumberOfOrders(): List<Customer> = customers.sorted
 // Note: the customer may order the same product for several times.
 // fun Customer.getTotalOrderPrice(): Double = orders.sumByDouble { it.products.sumByDouble { it.price } }
 fun Customer.getTotalOrderPrice(): Double = orders.flatMap { it.products }.sumByDouble { it.price }
+
+////// GroupBy
+// Return a map of the customers living in each city
+fun Shop.groupCustomersByCity(): Map<City, List<Customer>> = customers.groupBy { it.city }
+
+////// Partition
+// Return customers who have more undelivered orders than delivered
+fun Shop.getCustomersWithMoreUndeliveredOrdersThanDelivered(): Set<Customer> {
+  val (moreUndelivered, _) = customers.partition {
+    it.orders.filter { !it.isDelivered }.size > it.orders.filter { it.isDelivered }.size
+  }
+  return moreUndelivered.toSet()
+}
+
+
 
 
 
