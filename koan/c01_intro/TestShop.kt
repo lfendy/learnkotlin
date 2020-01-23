@@ -33,12 +33,12 @@ fun shop(name: String, vararg customers: Customer) = Shop(name, customers.toList
 
 val shop = shop("jb test shop",
   customer(lucas, Canberra,
-    order(reSharper),
+    order(idea, reSharper),
     order(reSharper, dotMemory, dotTrace)
   ),
-  customer(cooper, Canberra),
+  customer(cooper, Canberra, order(idea)),
   customer(nathan, Vancouver,
-    order(rubyMine, webStorm)
+    order(rubyMine, webStorm, idea)
   ),
   customer(reka, Budapest,
     order(idea, isDelivered = false),
@@ -46,7 +46,7 @@ val shop = shop("jb test shop",
     order(idea)
   ),
   customer(bajram, Ankara,
-    order(reSharper)
+    order(reSharper, idea)
   ),
   customer(asuka, Tokyo,
     order(idea)

@@ -38,6 +38,8 @@ fun main(args: Array<String> = arrayOf()) {
   // Partition
   println(shop.getCustomersWithMoreUndeliveredOrdersThanDelivered())
 
+  // Fold
+  println(shop.getSetOfProductsOrderedByEveryCustomer())
 
 
   println("OK")
@@ -119,6 +121,43 @@ fun Shop.getCustomersWithMoreUndeliveredOrdersThanDelivered(): Set<Customer> {
     val (delivered, undelivered) = it.orders.partition { it.isDelivered }
     undelivered.size > delivered.size
   }.toSet()
+}
+
+////// Fold
+// Return the set of products that were ordered by every customer
+// fun Shop.getSetOfProductsOrderedByEveryCustomer(): Set<Product> {
+//   return customers.
+//     flatMap { it.orders }.
+//     flatMap { it.products }.
+//     toSet().
+//     fold(mutableListOf<Product>(), {
+//       acc, e ->
+//         if (customers.all { it.orders.flatMap { it.products }.any { it == e } }) {
+//           acc.add(e)
+//         }
+//         acc
+//     }).toSet()
+// }
+
+// fun Shop.getSetOfProductsOrderedByEveryCustomer(): Set<Product> {
+//   return customers.
+//     flatMap { it.orders }.
+//     flatMap { it.products }.
+//     toSet().
+//     filter { val product = it; customers.all { it.orders.flatMap { it.products }.any { it == product } } }.
+//     toSet()
+// }
+
+fun Shop.getSetOfProductsOrderedByEveryCustomer(): Set<Product> {
+  val allProducts =  customers.
+    flatMap { it.orders }.
+    flatMap { it.products }.
+    toSet()
+
+  return customers.fold(allProducts, {
+    orderedByAll, customer ->
+      orderedByAll.intersect(customer.orders.flatMap { it.products }.toSet())
+  })
 }
 
 
