@@ -18,11 +18,16 @@ s == "Numbers: 123"
 
 Add and implement the function 'buildMap' with one parameter (of type extension function) creating a new HashMap, building it and returning it as a result. The usage of this function is shown below.
 
-
 */
 
 
 import java.util.HashMap
+
+fun buildMap(build: HashMap<Int, String>.() -> Unit): Map<Int, String> {
+  val map = HashMap<Int, String>()
+  map.build()
+  return map
+}
 
 fun usage(): Map<Int, String> {
   return buildMap {
@@ -34,9 +39,8 @@ fun usage(): Map<Int, String> {
 }
 
 
-
-
 fun main(args: Array<String> = arrayOf()) {
+  println(usage())
   println("OK")
 }
 
